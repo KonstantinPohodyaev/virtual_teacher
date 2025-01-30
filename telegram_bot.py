@@ -126,11 +126,13 @@ def get_study_list(message):
 def get_study(message):
     study_id = message.text.split()[1]
     try:
-        study = requests.get(GET_STUDY_URL.format(
-            domain=DOMAIN,
-            api_version=API_VERSION,
-            id=study_id
-        ))
+        study = requests.get(
+            GET_STUDY_URL.format(
+                domain=DOMAIN,
+                api_version=API_VERSION,
+                id=study_id
+            )
+        )
         if study.status_code != HTTPStatus.OK:
             raise Exception()
         if study.get('category'):
