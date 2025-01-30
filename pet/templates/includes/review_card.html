@@ -1,0 +1,36 @@
+<div class="card my-2">
+  {% if review.image %}
+    <div class="m-1">
+      <img src="{{ review.image.url }}"   height="auto" width="100%" alt="Изображение отзыва">
+    </div>
+  {% endif %}
+  <div class="card-header">
+    Отзыв пользователя {{ review.auhor }}
+  </div>
+  <div class="card-body">
+    {% with review.mark as mark %}
+      {% if mark > 3 %}
+        <h4 class="text-success">Оценка: {{ review.mark }}</h4>
+      {% elif mark > 2 and mark < 4 %}
+        <h4 class="text-warning">Оценка: {{ review.mark }}</h4>
+      {% else %}
+        <h4 class="text-danger">Оценка: {{ review.mark }}</h4>
+      {% endif %}
+    {% endwith %}
+    <div class="my-3">
+      {{ review.text }}<br>
+      {% if review.edited %}
+        <small class="text-secondary">Комментарий был отредактирован</small>
+      {% endif %}
+    </div>
+    {% if user.is_staff %}
+      <a href="{% url 'study:review_update' review.id review.study.id %}" class="btn btn-outline-info btn-sm text-info">Редактировать</a>
+      <a href="{% url 'study:review_delete' review.id review.study.id %}" class="btn btn-outline-info btn-sm text-info">Удалить</a>
+    {% endif %}
+  </div>
+  <div class="card-footer">
+    <p class="text-muted">
+      {{ review.created }}
+    </p>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Преподаватели
+{% endblock %}
+
+{% block content %}
+  <div class="row mx-auto">
+    {% for profile in page_obj %}
+      {% include 'includes/profile_card.html' %}
+    {% endfor %}
+    {% include 'includes/paginator.html' %}
+  </div>
+{% endblock %}

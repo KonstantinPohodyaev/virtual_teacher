@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  О KARTStudy
+{% endblock %}
+
+{% block content %}
+  <div class="col m-3 fs-5">
+    <span class="fs-3">KARTStudy</span> - это образовательная среда, с множеством различных категорий предметов на выбор.
+    Здесь можно найти курсы по определенному разделу или записаться на полноценные занятия с преподователем.<br>
+    <a href="{% url 'profiles:list' %}" class="btn btn-success my-3">Наши преподаватели</a>
+  </div>
+{% endblock %}

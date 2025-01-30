@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+  <p class="text-danger my-3 fs-4">
+    Вы вышли из профиля!<br>
+    Войдите или зарегистрируйтесь на сайте для использования его материалов!<br>
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'study:list' %}">На главную</a>
+      </li>
+    </ul>
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'registration' %}">Зарегистрироваться</a>
+      </li>
+    </ul>
+  </p>
+{% endblock %}

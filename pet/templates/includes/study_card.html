@@ -1,0 +1,35 @@
+<div class="card col-5 m-5">
+  {% if study.image %}
+    <img src="{{ study.image.url }}" height="100">
+  {% endif %}
+  <div class="card-body">
+    <h4 class="card-title text-center text-primary">{{ study.name }}</h4><hr>
+    <h6 class="card-subtitle text-danger">
+      <small>
+        {% if not study.is_published %}
+          <p class="text-danger">Курс снят с публикации</p>
+        {% endif %}
+      </small>
+    </h6>
+    <div class="card-text">
+      <p>Короткое название: <small class="text-primary">{{ study.slug }}</small></p>
+      <small>Создано: {{ study.created }}</small><br>
+      <small>Дата последнего редактирования: {{ study.edit }}</small><br>
+      <small class="text-muted">от автора: {{ study.author.username }}</small>
+    </div>
+    <div class="card-text">
+      <div class="text-info">Описание</div>
+      {{ study.description|truncatewords:10 }}
+    </div>
+    <hr>
+    <p class="text-info">
+      {% if not study.rating %}
+        Оценок нет
+      {% else %}
+        Рейтинг: {{ study.rating }}
+      {% endif %}
+    </p>
+    <a href="{% url 'study:detail' study.id %}" class="btn btn-info btn-sm m-1 text-white">Читать полностью:</a>
+    <a href="{% url 'study:review_create' study.id %}" class="btn btn-info btn-sm m-1 text-white">Написать отзыв:</a>
+  </div>
+</div>

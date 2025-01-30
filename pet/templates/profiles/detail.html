@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Преподаватели
+{% endblock %}
+
+{% block content %}
+  <div class="col d-flex justify-content-center">
+    <div class="card col-5 m-5">
+      <div class="card-body">
+          <h1 class="card-header text-center">{{ object.username }}</h1>
+          <p class="card-text m-3">
+            Фамилия: {{ object.first_name }}<br>
+            Имя: {{ object.last_name }}<br>
+            Почта: {{ object.email }}
+          </p>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <h3 class="text-info text-center">Материалы преподавателя {{ object.username }}</h3><br>
+  <div class="col d-flex justify-content-center">
+    {% if not categories %}
+      <span class="text-warning fs-4">Преподаватель {{ object.username }} не представлен в категориях</span>
+    {% else %}
+      <ul class="col-5 list-group">
+        <li class="list-group-item active">Из категорий</li>
+        {% for category in categories %}
+          <li class="list-group-item">
+            <a href="{% url 'study:category_detail' category.slug %}" class="btn btm-sm text-primary">{{ category.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+  <hr>
+  <div class="row mx-auto">
+    <p>
+      {% for study in page_obj %}
+        {% include 'includes/study_card.html' %}
+      {% endfor %}
+      {% include 'includes/paginator.html' %}
+    </p>
+  </div>
+{% endblock %}

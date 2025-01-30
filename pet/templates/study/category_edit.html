@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block title %}
+  {% if 'create/' in request.path %}
+    Добавление материала
+  {% elif 'edit/' in request.path %}
+    Редактирование материала
+  {% else %}
+    Удаление материала
+  {% endif %}
+{% endblock %}
+{% block content %}
+  <div class="col d-flex justify-content-center">
+    <div class="card">
+      <div class="card-header">
+        {% if 'create/' in request.path %}
+          Добавление материала
+        {% elif 'edit/' in request.path %}
+          Редактирование материала
+        {% else %}
+          Удаление записи
+        {% endif %}
+        {% with form.instance as data %}
+      </div>
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            {% if not 'delete/' in request.path %}
+              {% bootstrap_form form %}
+            {% else %}
+              <h4>{{ data.name }}</h4>
+              <p>{{ data.description }}</p>
+              <p class="text-muted">{{ data.created }}</p>
+              <h6 class="text-muted">{{ data.author.username }}</h6>
+            {% endif %}
+            {% bootstrap_button button_type="submit" content="Отправить" %}
+          </form>
+        </div>
+      {% endwith %}
+    </div>
+  </div>
+{% endblock %}

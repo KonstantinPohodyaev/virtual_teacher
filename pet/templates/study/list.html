@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Список предметов
+{% endblock %}
+
+{% block content %}
+  <div class="row mx-auto">
+    {% for study in page_obj %}
+      {% include 'includes/study_card.html' %}
+    {% endfor %}
+    {% include 'includes/paginator.html' %}
+  </div>
+{% endblock %}

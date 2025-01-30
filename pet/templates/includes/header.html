@@ -1,0 +1,53 @@
+{% load static %}
+{% load django_bootstrap5 %}
+
+<header>
+  <nav class="navbar navbar-light" style="background-color: rgb(50, 41, 41)">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'study:list' %}">
+        <img src="{% static 'img/logo.png' %}" width="80" height="80">
+        <small class="text-white fs-1 mx-2">KARTStudy</small>
+      </a>
+      {% with request.resolver_match.view_name as view_name %}
+        <span class="row link-white">
+          <ul class="nav nav-pills">
+            <li class="nav-item mx-2">
+              <button type="button" class="btn btn-outline-primary">
+                <a class="nav-link" href="{% url 'tools:rules' %}">Правила</a>
+              </button>
+            </li>
+            <li class="nav-item mx-2">
+              <button type="button" class="btn btn-outline-primary">
+                <a class="nav-link" href="{% url 'tools:about' %}">О нас</a>
+              </button>
+            </li>
+            {% if user.is_authenticated and user.status == 'teacher' %}
+              <li class="nav-item mx-2">
+                <button type="button" class="btn btn-outline-primary">
+                  <a href="{% url 'study:create' %}" class="nav-link">Создать учебный материал</a>
+                </button>
+              </li>
+            {% endif %}
+            {% if user.is_authenticated %}
+              <li class="nav-item mx-2">
+                <button type="button" class="btn btn-outline-primary">
+                  <a class="nav-link" href="{% url 'custom_logout' %}">Выйти</a></button>
+              </li> 
+            {% else %}
+              <li class="nav-item mx-2">
+                <button type="button" class="btn btn-outline-primary">
+                  <a href="{% url 'login' %}" class="text-decoration-none text-reset">Войти</a>
+                </button>
+              </li>
+              <li class="nav-item mx-2">
+                <button type="button" class="btn btn-outline-primary">
+                  <a href="{% url 'registration' %}" class="text-decoration-none text-reset">Регистрация</a>
+                </button>
+              </li>
+            {% endif %}
+          </ul>
+        </span>
+      {% endwith %}
+    </div>
+  </nav>
+</header>

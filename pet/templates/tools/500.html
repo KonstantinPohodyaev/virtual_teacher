@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Ошибка 505
+{% endblock %}
+
+{% block content %}
+  <div class="card col-6 m-5">
+    <h1 class="card-header text-danger">
+      Ошибка 500
+    </h1>
+    <div class="card-body">
+      <p>
+        Со стороны вашего сервера произошла ошибка!<br>
+        URL-запрос: {{ request.path }}
+      </p>
+      <p><a href="{% url 'study:list' %}">Вернуться на главную</a></p>
+    </div>
+  </div>
+{% endblock %}

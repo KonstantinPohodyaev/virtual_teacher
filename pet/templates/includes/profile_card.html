@@ -1,0 +1,13 @@
+<div class="card col-5 m-5">
+  <div class="card-body">
+    <h4 class="card-title text-center">{{ profile.username }}</h4>
+    <p class="card-text">
+      Фамилия: {{ profile.first_name }}<br>
+      Имя: {{ profile.last_name }}
+    </p>
+    <p>
+      <a href="{% url 'profiles:detail' profile.username %}" class="btn btn-info btn-sm text-white">Подробнее</a>
+    </p>
+  </div>
+</div>
+  
