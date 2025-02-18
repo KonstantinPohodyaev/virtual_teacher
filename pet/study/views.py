@@ -170,11 +170,6 @@ class CategoryDetailView(
 ):
     template_name = 'study/category_detail.html'
 
-    def dispatch(self, request, *args, **kwargs):
-        if request.user != self.get_object().author:
-            return redirect('study:list')
-        return super().dispatch(request, *args, **kwargs)
-
 
 class CategoryCreateView(
     CategoryFormMixin, OnlyStaffCanChange, CreateView

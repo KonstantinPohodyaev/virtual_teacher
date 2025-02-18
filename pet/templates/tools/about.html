@@ -5,9 +5,12 @@
 {% endblock %}
 
 {% block content %}
-  <div class="col m-3 fs-5">
-    <span class="fs-3">KARTStudy</span> - это образовательная среда, с множеством различных категорий предметов на выбор.
+  <div class="col-7 m-3 fs-5">
+    <span class="fs-1">KARTStudy</span> - это образовательная среда, с множеством различных категорий предметов на выбор.<br><hr>
     Здесь можно найти курсы по определенному разделу или записаться на полноценные занятия с преподователем.<br>
-    <a href="{% url 'profiles:list' %}" class="btn btn-success my-3">Наши преподаватели</a>
+    <ul>
+      <li><a href="{% url 'profiles:list' %}" class="btn btn-info my-2">Преподаватели</a></li>
+      <li><a href="{% url 'study:list' %}" class="btn btn-info my-2">Курсы</a></li>
+    </ul>
   </div>
 {% endblock %}

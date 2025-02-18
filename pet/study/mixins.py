@@ -5,6 +5,9 @@ from .forms import CategoryForm, ReviewForm, StudyForm
 from .models import TEACHER_STATUS, Category, Review, Study
 
 
+STUDY_MIXIN_PAGINATE_BY = 4
+
+
 class OnlyTeacherAuthorMixin(UserPassesTestMixin):
     def test_func(self):
         user = self.request.user
@@ -31,7 +34,7 @@ class OnlyStaffCanChange(UserPassesTestMixin):
 
 class StudyMixin:
     model = Study
-    paginate_by = 4
+    paginate_by = STUDY_MIXIN_PAGINATE_BY
 
 
 class StudyChangeMixin:

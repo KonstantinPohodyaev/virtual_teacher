@@ -3,5 +3,7 @@
 {% load django_bootstrap5 %}
 
 {% block content %}
-    <p class="text-danger fs-2">В разработке</p>
+  <div class="d-flex justify-content-center m-5">
+    {% include 'includes/category_card.html' %}
+  </div>
 {% endblock %}
